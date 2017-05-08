@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="utf-8" />
+  <title>多功能队列</title>
+  <style type="text/css">
+     span{
+         margin: 10px;
+         padding: 10px;
+         display: inline-block;
+         color: white;
+     }
+
+  </style>
+
+</head>
+<body>
+      <input type="text" id="kuang">
+      
+      <button id="left-in">左侧入</button>
+      <button id="left-out">左侧出</button>
+      <button id="right-in">右侧入</button>
+      <button id="right-out">右侧出</button>
+ 
+      <div id="duilie"></div>
+
+<script type="text/javascript">
+
+
+function leftin() {
+     var x = document.getElementById("kuang");
+     var span = document.createElement("span");
+     span.innerText = x.value;
+       span.style.display = 'inline-block';
+        span.style.color = '#fff';
+        span.style.background = 'red';
+     
+      if(duilie.children.length){
+            duilie.insertBefore(span,duilie.childNodes[0])
+        }else{
+            duilie.appendChild(span);
+        }
+}
+
+function leftout(){
+          alert(duilie.firstElementChild.innerText)
+            duilie.firstElementChild.remove()
+}
+function rightin(){
+    var y = document.getElementById('kuang');
+        var span = document.createElement('span');
+        span.innerText = y.value;
+        span.style.display = 'inline-block';
+        span.style.color = '#fff';
+        span.style.background = 'red';
+        duilie.appendChild(span);
+}
+function rightout(){
+   alert(duilie.lastElementChild.innerText)
+            duilie.lastElementChild.remove()
+}
+
+function init(){
+     var duilie = document.getElementById("kuang");
+     var leftIn = document.getElementById('left-in');
+     var leftOut = document.getElementById('left-out');
+     var rightIn = document.getElementById('right-in');
+     var rightOut = document.getElementById('right-out');
+
+        leftIn.addEventListener('click',leftin);
+        leftOut.addEventListener('click',leftout);
+        rightIn.addEventListener('click',rightin);
+        rightOut.addEventListener('click',rightout);
+}
+   init()
+</script>
+      
+</body>
+</html>
