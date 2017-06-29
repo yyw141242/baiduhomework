@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+  </head>
+  <body>
+    <script>
+      function Observer(data) {
+          this.data = data;
+          this.walk (data)
+      }
+
+      let p = Observer.prototype;
+
+      p.walk = function (obj) {
+        let val;
+        for (let key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                val = obj[key];
+                this.convert(key, val);
+            }
+        }
+      };
+
+      p.convert = function(key, val) {
+        Object.defineProperty(this.data, key, {
+          get: function () {
+            console.log('你访问了' + key);
+          },
+          set: function (newVal) {
+            console.log('你设置了' + key);
+            console.log('新的' + key + ' = ' + newVal)
+          }
+        })
+      };
+
+      let data = {
+          name :'yyw',
+          year :'21'
+      };
+
+      let app = new Observer(data);
+
+    </script>
+  </body>
+</html>
