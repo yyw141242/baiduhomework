@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>vue</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+    <div id="app">
+      <p>姓名：{{user.name}}</p>
+      <p>年龄：{{user.age}}</p>
+    </div>
+    
+    <script>
+       function Event() {
+        this.events = {}
+      }
+
+      Event.prototype.on = function(attr, callback) {
+        if (this.events[attr]) {
+          this.events[attr].push(callback)
+        } else {
+          this.events[attr] = [callback]
+        }
+      }
+
+      Event.prototype.off = function(attr) {
+        for (let key in this.events) {
+          if (this.events.hasOwnProperty(key) && key === attr) {
+            delete this.events[key]
+          }
+        }
+      }
+  
+      Event.prototype.emit = function(attr, ...arg) {
+        
+        this.events[attr] && this.events[attr].forEach(function(item) {
+          item(...arg)
+        })
+      }
+
+      var eventsBus =  new Event()
+      function Observer(data) {
+        this.data = data
+        this.walk (data) 
+      }
+
+
+      Observer.prototype.walk = function (obj) {
+        let val
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            val = obj[key]
+            if (typeof val === 'object') {
+              new Observer(val)
+            }
+            this.convert(key, val)
+          }
+        }
+      }
+      Observer.prototype.convert = function(key, val) {
+        Object.defineProperty(this.data, key, {
+          enumerable: true,
+          configurable: true,
+
+          get: function () {
+            console.log('你访问了' + key)
+            
+            return val
+          },
+
+          set: function(newVal) {
+            console.log('你设置了' + key)
+            console.log('新的' + key + ' = ' + newVal)
+            
+            eventsBus.emit(key, val, newVal)
+      
+            if(newVal === val) return
+            val = newVal
+
+            if (typeof newVal === 'object') {
+              new Observer(val)
+            }
+          }
+        })
+      }
+      Observer.prototype.watchEvent = function () {
+
+      }
+      Observer.prototype.$watch = function(attr, callback){
+        if (typeof this.data[attr] === 'object') {
+          let val
+          for (let key in this.data[attr]) {
+            if (this.data[attr].hasOwnProperty(key)) {
+              this.$watch(key, callback)
+            }
+          }
+        } else {
+          eventsBus.on(attr, callback)
+        }
+      }
+     
+      var app = new Vue({
+        el: '#app',
+        data: {
+          user: {
+            name: 'yyw',
+            age: 21
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
