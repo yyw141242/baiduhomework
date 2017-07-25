@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>css3任务1</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+.wrap {
+    position: relative;
+    width: 680px;
+    height: 400px;
+    margin: 50px auto;
+    border: 4px solid black;
+}
+img {
+    width: 640px;
+    height: 360px;
+    margin: 20px;
+    z-index: 0;
+}
+.wrap:hover img {
+    -webkit-filter: blur(6px);
+}
+.test {
+    position: absolute;
+    width: 320px;
+    height: 180px;
+    top: 110px;
+    left: 180px;
+    opacity: 0;
+    z-index: 1;
+}
+.wrap:hover .test {
+    opacity: 1;
+    border: 4px solid black;
+    transition: all 1s;
+}
+.test div {
+    width: 320px;
+    height: 180px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    background-image: -webkit-linear-gradient(left,#D81159,  #FFBC42 20%,  #30A9DE 40%, #E53A40 60%,  #75D701 80%,#D81159);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-size: 200% 100%;
+    -webkit-animation: change 4s infinite linear;/*制作流光文字有几个要点：text-fill-color一般设置为transparent（透明色），然后利用background-image和渐变颜色来设置文字的背景色，利用background-clip来实现文字的截取，再利用background-size设置扩大背景，已使运用animation的时候能达到动画的效果等。*/
+
+
+}
+@keyframes change {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+}
+
+</style>
+
+<body>
+    <div class="wrap">
+        <div class="test">
+            <div>
+                 <h1>欢迎加入ToughtWorks</h1>
+            </div>
+        </div>
+        <img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=591e20fb70f0f736ccf344536b3cd87c/1e30e924b899a901be724db215950a7b0308f5eb.jpg" alt="mh">
+    </div>
+</body>
+
+</html>
