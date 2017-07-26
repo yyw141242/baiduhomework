@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>轮播图</title>
+    <style type="text/css">
+      body{
+        background-color: white;
+      }
+      .wrap {
+        -webkit-perspective: 1500px;
+      } 
+      .content {
+        position: relative;
+        width: 1000px;
+        margin: auto;
+        transform-style: preserve-3d;
+        background-color: white;
+      }
+      .wrap:hover .content {
+        animation: move 10s infinite;
+      }
+      @keyframes move {
+          0%   {transform: rotateY(0deg);}
+         13.3% {transform: rotateY(0deg);}
+         16.6% {transform: rotateY(60deg);}
+         30%   {transform: rotateY(60deg);}
+         33.3% {transform: rotateY(120deg);}
+         46.6% {transform: rotateY(120deg);}
+         50%   {transform: rotateY(180deg);}
+         63.3% {transform: rotateY(180deg);}
+         66.6% {transform: rotateY(240deg);}
+         80%   {transform: rotateY(240deg);}
+         83.3% {transform: rotateY(300deg);}
+         96.6% {transform: rotateY(300deg);}
+         100%  {transform: rotateY(360deg);}
+      }
+      img {
+        position: absolute;
+        left: 300px;
+        top: 100px;
+        width: 400px;
+        height: 250px;
+      } 
+      img:nth-child(1) {
+        transform: rotateY(0deg)
+        translateZ(500px);
+      }
+      img:nth-child(2) {
+        transform: rotateY(60deg)
+        translateZ(500px);
+      }
+      img:nth-child(3) {
+        transform: rotateY(120deg)
+        translateZ(500px);
+      }
+      img:nth-child(4) {
+        transform: rotateY(180deg)
+        translateZ(500px);
+      }
+      img:nth-child(5) {
+        transform: rotateY(240deg)
+        translateZ(500px);
+      }
+      img:nth-child(6) {
+        transform: rotateY(300deg)
+        translateZ(500px);
+      }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+      <div class="content">
+        <img src="http://img.mp.itc.cn/upload/20160811/2ede3de9570a4fe89c3193ba9c95dd2b_th.jpg" alt="图一" />
+           <img src="http://img.mp.itc.cn/upload/20160811/973dd65f5b6f4196b2b355bea844a4a8_th.jpg" alt="图二" />
+           <img src="http://img.mp.itc.cn/upload/20160811/973dd65f5b6f4196b2b355bea844a4a8_th.jpg" alt="图三" />
+           <img src="http://img.mp.itc.cn/upload/20160811/7ec7d9c7fd6d44c28967b9fa763953d4_th.jpg" alt="图四" />
+           <img src="http://img.mp.itc.cn/upload/20160811/63c72cec45a34266ad34d314f4475ef5_th.jpg" alt="图五" />
+           <img src="http://img.mp.itc.cn/upload/20160811/3730f978dd1c44a8ba3abb07afdd1d42_th.jpg" alt="图六" />
+      </div>
+    </div>
+</body>
+</html>

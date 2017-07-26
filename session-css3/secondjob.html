@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS3饼状loading效果</title>
+</head>
+<style>
+
+  .loading {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    top: 250px;
+    left: 625px;  
+    border: 3px solid #FF298C;
+  }
+  .boder {
+    width: 100px;
+    height: 100px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 3px solid #FF298C;
+    border-left-color: transparent;
+    animation: rotate 1s linear infinite;
+  }
+  @keyframes rotate{
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  .background {
+    width: 0px;
+    height: 0px;
+    border: 30px solid;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    border-radius: 30px;
+    border-right-color: #FB8BBD;
+    border-top-color: #FB8BBD;
+    border-bottom-color: #FF298C;
+    border-left-color: #FF298C;
+    transform: rotate(45deg);
+  }
+  .left {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    
+    border: 30px solid #FF298C;
+    border-radius: 30px;  
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+   animation: leftromate 2s linear infinite; 
+    z-index: 2;
+  }
+  @keyframes leftromate{
+    0% {transform: rotate(45deg);}
+    25% {transform: rotate(-135deg);} /*开始等待*/
+    50% {transform: rotate(-135deg);}
+    75% {transform: rotate(-315deg);} /*开始等待*/
+    100% {transform: rotate(-315deg);}
+  }
+ .right {
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+   
+    border: 30px solid #FB8BBD;
+    border-radius: 30px;  
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    animation: rightromate 2s linear infinite;
+      animation-delay: 0.50s;
+    z-index: 1;
+  }
+  @keyframes rightromate{
+     0% {transform: rotate(45deg);z-index: 2;}
+    25% {transform: rotate(-135deg);} /*开始等待*/
+    50% {transform: rotate(-135deg);z-index: 2;}
+    50.001% {transform: rotate(-135deg);z-index: 1;}
+    75% {transform: rotate(-315deg);z-index: 1;}
+    99.999% {transform: rotate(-315deg);z-index: 1;}
+    100% {transform: rotate(-315deg);z-index: 2;}
+  }
+</style>
+<body>
+  <div class="loading">
+    <div class="boder"></div>
+    <div class="background"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+  </div>
+</body>
+</html>
