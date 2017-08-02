@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>vue</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+      div{
+        margin-top: 15px;
+        text-align: center;
+      }
+      textarea{
+        width: 200px;
+        height: 75px;
+      }
+      #app{
+        width: 400px;
+        height: 500px;
+        border: 2px solid black;
+        margin: 50px auto;
+        border-radius: 15px;
+      }
+      .add{
+        display: inline-block;
+        text-align: center;
+      }
+      .label{
+        border: 2px solid black;
+        width: 250px;
+        margin: 15px auto;
+        border-radius: 5px; 
+      }
+      .del{
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div id ="app">
+      <h1>杨亚维的小List</h1>
+      <textarea v-model="newtodo" placeholder="请输入..."></textarea>
+      
+        <div v-for="(item,index) in items" class="label">
+          {{ item.message }}
+          <button v-on:click="dellist" class="del">X</button>
+        </div>
+      <div>
+        <button v-on:click="addlist" class="add">add</button>
+      </div>
+    </div>
+
+    <script>
+      
+    var vm= new Vue({
+       el: '#app',
+       data: {
+         newtodo: '',
+         index: '',
+         items: [
+           {message: 'one' , index: '1'},
+           {message: 'two' , index: '2'}
+         ]
+       },
+       methods: {
+         addlist: function(){
+           this.items.push({message: this.newtodo})
+         },
+         dellist: function(){
+           this.items.splice(this.index,1)
+         }
+       }
+    })
+
+  </script>
+
+</body>
+
+</html>
